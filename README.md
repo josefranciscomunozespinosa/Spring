@@ -7,4 +7,5 @@
   - Spring boot, REST básico con h2
   - Spring boot, REST básico + lombook con h2
   - Spring boot, REST básico + swagger con h2
-  - Spring boot, REST básico + hateoas con h2
+  - Spring boot, REST básico + swagger + hateoas con h2
+  - Spring boot, REST básico + swagger + validaciones con h2
