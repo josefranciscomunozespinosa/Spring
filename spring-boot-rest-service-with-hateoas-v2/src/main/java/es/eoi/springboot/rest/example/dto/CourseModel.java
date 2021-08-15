@@ -5,6 +5,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,4 +20,5 @@ public class CourseModel extends RepresentationModel<CourseModel> {
 	private String name;
 	private String description;
 
+	private List<StudentModel> students;
 }

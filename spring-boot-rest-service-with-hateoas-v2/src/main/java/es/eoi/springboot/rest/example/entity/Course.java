@@ -1,18 +1,15 @@
 package es.eoi.springboot.rest.example.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "students")
 @Entity
 public class Course {
 
@@ -22,4 +19,6 @@ public class Course {
 	private String name;
 	private String description;
 
+	@ManyToMany(mappedBy = "courses",fetch = FetchType.EAGER)
+	private List<Student> students;
 }
