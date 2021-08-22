@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <button onclick="getAllUsers()">Get all USERS</button>
+    <script>
+
+        async function getAllUsers()
+        {
+            const response = await fetch('http://localhost:8080/user');
+            const myJson = await response.json();
+            console.log(JSON.stringify(myJson));
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

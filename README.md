@@ -12,3 +12,4 @@
   - [Spring boot, REST básico + swagger + validaciones con h2](spring-boot-rest-service-validation/)
   - [Spring boot, REST básico + swagger + exception handling con h2](spring-boot-rest-service-exception-handling/)
   - [Spring boot, REST básico con test unit](spring-boot-rest-services-with-unit-and-integration-tests/)
+  - [Spring boot, REST básico con mysql y problema CORS resuelto](spring-boot-rest-service-cors-with-mysql/)
