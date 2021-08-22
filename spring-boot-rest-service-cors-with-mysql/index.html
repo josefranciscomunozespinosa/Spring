@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <button onclick="getAllUsers()">Get all USERS</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-
+        const Url = 'http://localhost:8080/user';
         async function getAllUsers()
         {
-            const response = await fetch('http://localhost:8080/user');
+            const response = await fetch(Url);
             const myJson = await response.json();
             console.log(JSON.stringify(myJson));
         }
 
+        $(document).ready(function () {
+            $("#btnAllUsers").click(function () {
+                $.get(Url, function (data, status) {
+                    console.log(data);
+                    var users = '';
+                    data.forEach(function(user){
+                        users += "<li>"+ user.name+"</li>";
+                    });
+                    $("#users").html(users);
+                });
+            });
+        });
+
     </script>
 </head>
 <body>
-
+    <button onclick="getAllUsers()">Get all USERS</button>
+    <button id="btnAllUsers">Get all USERS (JQuery)</button>
+    <ul id="users"></ul>
 </body>
 </html>
