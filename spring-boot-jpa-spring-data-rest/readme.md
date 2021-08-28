@@ -1,5 +1,41 @@
 ## Complete Code Example
 
+Spring Data project provides common abstractions to integrate with different kinds of data stores. Spring Data Rest is part of the umbrella of Spring Data projects. It makes it easy to build hypermedia-driven REST web services, on top of Spring Data repositories.
+
+You will learn
+- What is Spring Data Rest?
+- How does Spring Data Rest make building REST API easier?
+- How to integration Spring Data Rest with Spring Data JPA?
+- What are important features of Spring Data Rest?
+- How to execute REST API created using Spring Data Rest?
+
+
+What Does Spring Data Rest Do?
+
+It does all of the following:
+- Exposes REST services around the Spring Data, without having to write a lot of code.
+- Supports both SQL-based and No SQL-based databases.
+- Supports Pagination
+- Enables Filtering
+- Allows for Sorting
+- Supports HATEOAS
+
+## Why Spring Data Rest
+Spring Data Rest is ideal for simple projects, that quickly want to get started with creating REST API.
+
+Let’s look at a quick example of using Spring Data Rest to build a REST API.
+
+## Generate your project
+
+The easiest way to bring such projects up, would be to use the Spring Initializr.
+- Web
+- JPA
+- Rest
+- H2
+
+Note that we have included the dependencies such as Web, JPA and Rest Repositories.You can generate the project, and then import it as a maven project into your IDE.
+
+## The complete code
 
 ### /pom.xml
 
@@ -116,7 +152,7 @@
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/jpa/spring/data/rest/example/SpringBoot2JPAWithSpringDataRestApplication.java
+### /src/main/java/es/eoi/springboot/jpa/spring/data/rest/example/SpringBoot2JPAWithSpringDataRestApplication.java
 
 ```java
 package es.eoi.springboot.jpa.spring.data.rest.example;
@@ -144,7 +180,7 @@ public class SpringBoot2JPAWithSpringDataRestApplication {
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/jpa/spring/data/rest/example/student/Student.java
+### /src/main/java/es/eoi/springboot/jpa/spring/data/rest/example/student/Student.java
 
 ```java
 package es.eoi.springboot.jpa.spring.data.rest.example.student;
@@ -211,7 +247,8 @@ public class Student {
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/jpa/spring/data/rest/example/student/StudentDataRestRepository.java
+### /src/main/java/es/eoi/springboot/jpa/spring/data/rest/example/student/StudentDataRestRepository.java
+Once you have an entity, you can create a RepositoryRestResource for it.
 
 ```java
 package es.eoi.springboot.jpa.spring.data.rest.example.student;
@@ -253,7 +290,7 @@ values(10002,'Maria Angeles', 'A1234568');
 ```
 ---
 
-### /src/test/java/com/in28minutes/springboot/jpa/spring/data/rest/example/SpringBootJPAWithSpringDataRestApplicationTests.java
+### /src/test/java/es/eoi/springboot/jpa/spring/data/rest/example/SpringBootJPAWithSpringDataRestApplicationTests.java
 
 ```java
 package es.eoi.springboot.jpa.spring.data.rest.example;
@@ -265,7 +302,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringBoot2JPAWithSpringDataRestApplicationTests {
+public class SpringBootJPAWithSpringDataRestApplicationTests {
 
 	@Test
 	public void contextLoads() {
@@ -274,3 +311,10 @@ public class SpringBoot2JPAWithSpringDataRestApplicationTests {
 }
 ```
 ---
+
+
+
+Final result in h2 console:
+
+![H2 console](./images/img.png)
+

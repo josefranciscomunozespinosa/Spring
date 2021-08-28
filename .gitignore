@@ -1,3 +1,7 @@
+
+# ignore Maven generated target folders
+target
+
 # Compiled class file
 *.class
 
@@ -19,5 +23,35 @@
 *.tar.gz
 *.rar
 
+# Eclipse
+.settings
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
