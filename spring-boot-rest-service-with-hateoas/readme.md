@@ -1,4 +1,55 @@
+# Rest API - HATEOAS
+
+## What is HATEOAS
+
+While viewing a web page, you can see data in the page and perform actions with it. How about a REST API? Typically when you ask for a REST Resource, you get the details of the resource back. How about sending the operations that you can do with the resource in the response?
+
+What will you learn?
+- What is HATEOAS?
+- Why do you need to use HATEOAS?
+- When do you make use of HATEOAS?
+
+## What Does HATEOAS Stand For?
+The term HATEOAS stands for the phrase Hypermedia As The Engine Of Application State. To understand this further, we first need to understand the meaning of Hypermedia.
+
+When the browser load the page, you definitely can see all the content that page has to offer. More interestingly, the page also allows you to perform a lot of actions around that data, such as:
+
+- Clicking on buttons (the green “Clone or Download”)
+- Clicking on tabs (to view the “Issues”, for instance), and several more.
+
+Now let’s look at how our REST API’s behave:
+
+If you look at a typical GET request to a RESTful server, such as this one:
+
+![Sample users](./images/users.png)
+
+The request to GET http://localhost:8080/users retrieves a set of three users details in this case. Sending a request with GET http://localhost:8080/users/1 will retrieve details of just the first user.
+
+Typically, when we perform a REST request, we only get the data, and not any actions around it. This is where HATEOAS comes in the fill in the gap.
+
+A HATEOAS request allows you to not only send the data but also specify the related actions:
+
+![Sample users hateoas](./images/users_hateoas.png)
+
+This example was in the JSON format but we can return the data in XML format for example.
+
+## Why Do We Need HATEOAS?
+The single most important reason for HATEOAS is loose coupling. If a consumer of a REST service needs to hard-code all the resource URLS, then it is tightly coupled with your service implementation. Instead, if you return the URLs it could use for the actions, then it is loosely coupled. There is no tight dependency on the URI structure, as it is specified and used from the response.
+
+
+
 ## Complete Code Example
+
+![Project structure](./images/structure.png)
+
+A few details:
+
+- SpringBootRestServiceApplication.java - The Spring Boot Application class generated with Spring Initializer. This class acts as the launching point for application.
+- pom.xml - Contains all the dependencies needed to build this project. We will use Spring Boot Starter AOP.
+- Student.java - Student JPA Entity
+- StudentRepository.java - Student JPA Repository. This is created using Spring Data JpaRepository.
+- StudentResource.java - Spring Rest Controller exposing all services on the student resource.
+- data.sql - Initial data for the student table. Spring Boot would execute this script after the tables are created from the entities.
 
 
 ### /pom.xml
@@ -230,6 +281,11 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 ---
 
 ### /src/main/java/es/eoi/springboot/rest/example/student/StudentResource.java
+To implement HATEOAS, we would need to include related resources in the response.
+
+Instead of Student we use a return type of EntityModel<Student>.
+
+_EntityModel is a simple class wrapping a domain object and allows adding links to it._
 
 ```java
 package es.eoi.springboot.rest.example.student;
@@ -432,3 +488,7 @@ public class SpringBootRestServiceApplicationTests {
 }
 ```
 ---
+
+## Check it on Swagger
+
+![Final result](./images/img.png)
