@@ -17,7 +17,7 @@ public class Student {
 	private String name;
 	
 	@NotNull
-	@Size(min=7, message="Passport should have at least 2 characters")
+	@Size(min=7, message="Passport should have at least 7 characters")
 	private String passportNumber;
 	
 	public Student() {

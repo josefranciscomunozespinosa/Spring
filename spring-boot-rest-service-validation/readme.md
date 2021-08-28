@@ -180,6 +180,8 @@ But the problem is that there are no details returned indicating what went wrong
 - The consumer knows its a bad request.
 - But, how do they no what is wrong? Which element did not pass the validation? What should the consumer do to fix it?
 
+![Project structure](./images/img.png)
+
 ## Customizing Validation Response
 
 Let’s define a simple error response bean.
