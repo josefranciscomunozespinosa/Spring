@@ -1,8 +1,9 @@
 ## Complete Code Example
 
+Now we are going to use [Swagger UI](https://swagger.io/) in our application
 
 ### /pom.xml
-
+What's new in the pom.xml code?
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -140,17 +141,12 @@
 ### /src/main/java/es/eoi/springboot/rest/example/SpringBoot2RestServiceApplication.java
 
 ```java
-package es.eoi.springboot.rest.example;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 @SpringBootApplication
 public class SpringBoot2RestServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootRestServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootRestServiceApplication.class, args);
+    }
 }
 ```
 ---
@@ -158,58 +154,46 @@ public class SpringBoot2RestServiceApplication {
 ### /src/main/java/es/eoi/springboot/rest/example/student/Student.java
 
 ```java
-package es.eoi.springboot.rest.example.student;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Size;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 @Entity
-@ApiModel(description="All details about the student. ")
 public class Student {
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	@ApiModelProperty(notes="Name should have atleast 2 characters")
-	@Size(min=2, message="Name should have atleast 2 characters")
-	private String name;
-	
-	private String passportNumber;
-	
-	public Student() {
-		super();
-	}
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	public Student(Long id, String name, String passportNumber) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.passportNumber = passportNumber;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPassportNumber() {
-		return passportNumber;
-	}
-	public void setPassportNumber(String passportNumber) {
-		this.passportNumber = passportNumber;
-	}
-		
+    @Size(min=2)
+    private String name;
+
+    private String passportNumber;
+
+    public Student() {
+        super();
+    }
+
+    public Student(Long id, String name, String passportNumber) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.passportNumber = passportNumber;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getPassportNumber() {
+        return passportNumber;
+    }
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
+    }
+
 }
 ```
 ---
@@ -217,13 +201,11 @@ public class Student {
 ### /src/main/java/es/eoi/springboot/rest/example/student/StudentNotFoundException.java
 
 ```java
-package es.eoi.springboot.rest.example.student;
-
 public class StudentNotFoundException extends RuntimeException {
 
-	public StudentNotFoundException(String exception) {
-		super(exception);
-	}
+    public StudentNotFoundException(String exception) {
+        super(exception);
+    }
 
 }
 ```
@@ -232,12 +214,6 @@ public class StudentNotFoundException extends RuntimeException {
 ### /src/main/java/es/eoi/springboot/rest/example/student/StudentRepository.java
 
 ```java
-package es.eoi.springboot.rest.example.student;
-
-import es.eoi.springboot.rest.example.student.Student;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
@@ -248,33 +224,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 ### /src/main/java/es/eoi/springboot/rest/example/student/StudentController.java
 
 ```java
-package es.eoi.springboot.rest.example.student;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
-
-import es.eoi.springboot.rest.example.student.Student;
-import es.eoi.springboot.rest.example.student.StudentNotFoundException;
-import es.eoi.springboot.rest.example.student.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import io.swagger.annotations.ApiOperation;
-
 @RestController
 public class StudentController {
 
@@ -287,8 +236,6 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    @ApiOperation(value = "Find student by id",
-            notes = "Also returns a link to retrieve all students with rel - all-students")
     public Resource<Student> retrieveStudent(@PathVariable long id) {
         Optional<Student> student = studentRepository.findById(id);
 
@@ -337,6 +284,49 @@ public class StudentController {
 }
 ```
 ---
+
+### /src/main/resources/application.properties
+
+```properties
+# Enabling H2 Console
+spring.h2.console.enabled=true
+
+spring.datasource.url=jdbc:h2:mem:testdb
+```
+---
+
+### /src/main/resources/data.sql
+
+```
+insert into student values(10001,'Jose Francisco', 'E1234567');
+
+insert into student values(10002,'Maria Angeles', 'A1234568');
+```
+---
+
+### /src/test/java/es/eoi/springboot/rest/example/SpringBootRestServiceApplicationTests.java
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class SpringBoot2RestServiceApplicationTests {
+
+    @Test
+    public void contextLoads() {
+    }
+
+}
+```
+---
+
+
+### Test swagger on
+
+    http://localhost:8080/swagger-ui/index.html
+
+
+## Configuring some things on Swagger
+
 
 ### /src/main/java/es/eoi/springboot/rest/example/swagger/ApiDocumentationConfig.java
 
@@ -413,48 +403,140 @@ public class SwaggerConfig {
 ```
 ---
 
-### /src/main/resources/application.properties
+What's new in the code?
 
-```properties
-# Enabling H2 Console
-spring.h2.console.enabled=true
 
-spring.datasource.url=jdbc:h2:mem:testdb
-```
----
+## Test swagger on
 
-### /src/main/resources/data.sql
+    http://localhost:8080/swagger-ui/index.html
 
-```
-insert into student values(10001,'Jose Francisco', 'E1234567');
+What has changed?
 
-insert into student values(10002,'Maria Angeles', 'A1234568');
-```
----
 
-### /src/test/java/es/eoi/springboot/rest/example/SpringBootRestServiceApplicationTests.java
+## More Swagger configurations
+
+### /src/main/java/es/eoi/springboot/rest/example/student/Student.java
 
 ```java
-package es.eoi.springboot.rest.example;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SpringBoot2RestServiceApplicationTests {
-
-	@Test
-	public void contextLoads() {
+@Entity
+@ApiModel(description="All details about the student. ")
+public class Student {
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@ApiModelProperty(notes="Name should have atleast 2 characters")
+	@Size(min=2, message="Name should have atleast 2 characters")
+	private String name;
+	
+	private String passportNumber;
+	
+	public Student() {
+		super();
 	}
 
+	public Student(Long id, String name, String passportNumber) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.passportNumber = passportNumber;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPassportNumber() {
+		return passportNumber;
+	}
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
+	}
+		
 }
 ```
 ---
 
 
-### Test swagger on
+### /src/main/java/es/eoi/springboot/rest/example/student/StudentController.java
 
-    http://localhost:8080/swagger-ui
+```java
+@RestController
+public class StudentController {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @GetMapping("/students")
+    public List<Student> retrieveAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    @GetMapping("/students/{id}")
+    @ApiOperation(value = "Find student by id",
+            notes = "Also returns a link to retrieve all students with rel - all-students")
+    public Resource<Student> retrieveStudent(@PathVariable long id) {
+        Optional<Student> student = studentRepository.findById(id);
+
+        if (!student.isPresent())
+            throw new StudentNotFoundException("id-" + id);
+
+        Resource<Student> resource = new Resource<Student>(student.get());
+
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
+
+        resource.add(linkTo.withRel("all-students"));
+
+        return resource;
+    }
+
+    @DeleteMapping("/students/{id}")
+    public void deleteStudent(@PathVariable long id) {
+        studentRepository.deleteById(id);
+    }
+
+    @PostMapping("/students")
+    public ResponseEntity<Object> createStudent(@RequestBody Student student) {
+        Student savedStudent = studentRepository.save(student);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(savedStudent.getId()).toUri();
+
+        return ResponseEntity.created(location).build();
+
+    }
+
+    @PutMapping("/students/{id}")
+    public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
+
+        Optional<Student> studentOptional = studentRepository.findById(id);
+
+        if (!studentOptional.isPresent())
+            return ResponseEntity.notFound().build();
+
+        student.setId(id);
+
+        studentRepository.save(student);
+
+        return ResponseEntity.noContent().build();
+    }
+}
+```
+---
+
+What's new in the code?
+
+## Test swagger on
+
+    http://localhost:8080/swagger-ui/index.html
+
+What has changed?
+
+![Swagger](./images/img.png)
