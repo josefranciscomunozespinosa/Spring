@@ -24,11 +24,19 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
+  /*
   @ExceptionHandler(StudentNotFoundException.class)
   public final ResponseEntity<Object> handleUserNotFoundException(StudentNotFoundException ex, WebRequest request) {
     ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
         request.getDescription(false));
     return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+  }
+  */
+
+  @ExceptionHandler(StudentNotFoundException.class)
+  public final ResponseEntity<ErrorDetails> handleUserNotFoundException(StudentNotFoundException ex, WebRequest request) {
+    ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+    return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
   }
 
   /*
