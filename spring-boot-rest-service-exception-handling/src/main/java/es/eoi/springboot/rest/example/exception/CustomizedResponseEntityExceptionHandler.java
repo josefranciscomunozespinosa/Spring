@@ -18,6 +18,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
   private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+
   @ExceptionHandler(Exception.class)
   public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request) {
     ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
@@ -25,7 +26,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
-  @ExceptionHandler(StudentNotFoundException.class)
+  /*
+  @ExceptionHandler(Exception.class)
+  public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) {
+    ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
+            request.getDescription(false));
+    return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+ */
+
+ @ExceptionHandler(StudentNotFoundException.class)
   public final ResponseEntity<ExceptionResponse> handleUserNotFoundException(StudentNotFoundException ex, WebRequest request) {
     ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
         request.getDescription(false));
@@ -33,5 +43,14 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     logger.warn("User not found {}", exceptionResponse.getMessage());
     return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
   }
+
+  /*
+  @ExceptionHandler(StudentNotFoundException.class)
+  public final ResponseEntity<ErrorDetails> handleUserNotFoundException(StudentNotFoundException ex, WebRequest request) {
+    ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
+            request.getDescription(false));
+    return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+  }
+  */
 
 }
