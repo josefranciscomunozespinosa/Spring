@@ -17,9 +17,9 @@ Para ejecutar este proyecto, debe seguir los siguientes pasos:
         mysql> grant all on db_example.* to 'springuser'@'%'; -- Gives all privileges to the new user on the newly created database      
     ```
 
-##Referencias
+## Referencias
    ```
-      https://spring.io/guides/gs/accessing-data-mysql/
+      - https://spring.io/guides/gs/accessing-data-mysql/
    ```
 
 ## Revisa el código
