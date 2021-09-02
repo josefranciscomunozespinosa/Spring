@@ -1,4 +1,4 @@
-# Spring
+# Ejercicios y Soluciones de ejercicios de Spring
 
 ## Hibernate
 
