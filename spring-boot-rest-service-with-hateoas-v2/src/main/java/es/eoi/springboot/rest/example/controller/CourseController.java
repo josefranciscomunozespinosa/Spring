@@ -28,9 +28,9 @@ public class CourseController {
 	@GetMapping("/api/courses")
 	public ResponseEntity<CollectionModel<CourseModel>> getAllCourses()
 	{
-		List<Course> actorEntities = courseRepository.findAll();
+		List<Course> courseEntityList = courseRepository.findAll();
 		return new ResponseEntity<>(
-				courseModelAssembler.toCollectionModel(actorEntities),
+				courseModelAssembler.toCollectionModel(courseEntityList),
 				HttpStatus.OK);
 	}
 
