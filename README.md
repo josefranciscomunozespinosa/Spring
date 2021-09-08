@@ -20,17 +20,19 @@
 - [Spring boot, REST básico + swagger + exception handling con h2](spring-boot-rest-service-exception-handling/)
 - [Spring boot, REST básico con mysql y problema CORS resuelto](spring-boot-rest-service-cors-with-mysql/)
 
+## Más ejercicios interesantes
+- Hacer este [tutorial guiado](https://howtodoinjava.com/spring5/hateoas/spring-hateoas-tutorial/) de HATEOAS. Assemblers y relaciones con h2. Este lo hemos realizado ya en el ejercicio de [hateoas 2](spring-boot-rest-service-with-hateoas-v2/)
+- [Aplicación Web con servicios REST y Spring Data JPA](https://danielme.com/2018/02/21/tutorial-spring-boot-web-spring-data-jpa/) aquí se ve como configurar log4j con xml, el pool de conexiones, los campos not nullable, añadir JSP para visualizar en el front, los ficheros .war en vez de .jar, server.servlet.context-path y auditoría del código (ver por logs todo lo que sucede en nuestra aplicación) o cómo obtener las propiedades de los ficheros .properties. Muy muy interesante. Algunas cosas las implementa de dos formas diferentes para que sepamos diferentes formas de hacerlo.
+- [Paginación](https://howtodoinjava.com/spring5/hateoas/pagination-links/) Cuando nuestras listas de recursos son muy largas es muy recomendable añadirle paginación. 
+- [Embedded collection model name](https://howtodoinjava.com/spring5/hateoas/embedded-collection-name/). Habrá momentos que necesitemos utilizar una clase embebida para que se guarde en la misma tabla.
+- [Cambiar el banner de Spring boot](https://danielme.com/2019/06/14/tips-spring-boot-banner-ascii-de-inicio/). Una chorrada, pero para que sepáis que es personalizable.
+
+## Otros (sin spring)
+- [Relaciones y atributos lazy](https://danielme.com/2018/01/03/hibernatejpa-relaciones-y-atributos-lazy-bytecode-enhacement/) (Sin spring)
+
 ## Tests
 - [Spring boot, REST básico con test unit](spring-boot-rest-services-with-unit-and-integration-tests/)
 
-## Más ejercicios interesantes
-- Hacer este [tutorial guiado](https://howtodoinjava.com/spring5/hateoas/spring-hateoas-tutorial/) de HATEOAS
-  - Assemblers y relaciones con h2
-- [Aplicación Web con servicios REST y Spring Data JPA](https://danielme.com/2018/02/21/tutorial-spring-boot-web-spring-data-jpa/)
-- [Paginación](https://howtodoinjava.com/spring5/hateoas/pagination-links/)
-- [Embedded collection model name](https://howtodoinjava.com/spring5/hateoas/embedded-collection-name/)
-- [Relaciones y atributos lazy](https://danielme.com/2018/01/03/hibernatejpa-relaciones-y-atributos-lazy-bytecode-enhacement/)
-- [Cambiar el banner de Spring boot](https://danielme.com/2019/06/14/tips-spring-boot-banner-ascii-de-inicio/)
 
 
  # Soluciones Spring
